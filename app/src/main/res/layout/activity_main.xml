@@ -4,15 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="phone"
+        android:hint="Номер должен начинаться с '7'"
+        app:layout_constraintBottom_toTopOf="@id/infoContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/infoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText">
+
+        <TextView
+            android:id="@+id/tvNumberTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Номер: "
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/tvNumberValue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvCountryNameTitle"/>
+
+        <TextView
+            android:id="@+id/tvNumberValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/tvNumberTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCountryNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Страна: "
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumberValue" />
+
+        <TextView
+            android:id="@+id/tvCountryNameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/tvCountryNameTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumberValue" />
+
+        <TextView
+            android:id="@+id/tvLocationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Регион: "
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCountryNameTitle" />
+
+        <TextView
+            android:id="@+id/tvLocationValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/tvLocationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvCountryNameValue" />
+
+        <TextView
+            android:id="@+id/tvCarierTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Оператор: "
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocationTitle" />
+
+        <TextView
+            android:id="@+id/tvCarierValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/tvCarierTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocationValue" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnGetInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Пробить по базе ФСБ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
