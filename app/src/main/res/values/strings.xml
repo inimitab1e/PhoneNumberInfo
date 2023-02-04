@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PhoneNumberInfo</string>
+    <string name="editview_hint">Номер должен начинаться с \'7\'</string>
+    <string name="number_title">Номер:</string>
+    <string name="country_name_title">Страна:</string>
+    <string name="location_title">Регион:</string>
+    <string name="carier_title">Оператор:</string>
+    <string name="btn_text">Пробить по базе ФСБ</string>
+    <string name="bad_network_connection_title">Нет интернет соединения</string>
+    <string name="bad_network_connection_message">Чтобы продолжить работу, включите интернет</string>
 </resources>
