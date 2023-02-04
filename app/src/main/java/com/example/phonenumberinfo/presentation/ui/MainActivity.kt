@@ -2,6 +2,7 @@ package com.example.phonenumberinfo.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -12,7 +13,6 @@ import com.example.phonenumberinfo.domain.model.ResponseToShow
 import com.example.phonenumberinfo.presentation.utils.NetworkConnection
 import com.example.phonenumberinfo.presentation.utils.StringConstants
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             } else {
                 failedResponseUiSetup()
             }
+        }
+
+        mainActivityViewModel.errorResponse.observe(this) { error ->
+            errorResponseUiSetup(error)
         }
     }
 
@@ -89,5 +93,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             tvLocationValue.text = StringConstants.notFound
             tvCarierValue.text = StringConstants.notFound
         }
+    }
+
+    private fun errorResponseUiSetup(errorMessage: String) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
 }

@@ -8,6 +8,7 @@ import com.example.phonenumberinfo.domain.repository.GetInfoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.phonenumberinfo.domain.network_features.result.Result
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
@@ -17,10 +18,16 @@ class MainActivityViewModel @Inject constructor(
     private var _numberInfoResponse = MutableLiveData<ResponseToShow?>()
     val numberInfoResponse get() = _numberInfoResponse
 
+    private var _errorResponse = MutableLiveData<String>()
+    val errorResponse get() = _errorResponse
+
     fun getNumberInfo(number: String) {
         viewModelScope.launch {
             val response = repo.getInfo(number)
-            numberInfoResponse.postValue(response)
+            when(response) {
+                is Result.Success -> numberInfoResponse.postValue(response.value)
+                is Result.Failure<*> -> errorResponse.postValue(response.error.toString())
+            }
         }
     }
 }
