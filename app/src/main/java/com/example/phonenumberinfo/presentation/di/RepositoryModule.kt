@@ -17,9 +17,9 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideGetInfoRepository(client: Retrofit): GetInfoRepository {
+    fun provideGetInfoRepository(apiService: ApiService): GetInfoRepository {
         return GetInfoRepositoryImpl(
-            apiService = client.create(ApiService::class.java),
+            apiService = apiService,
             dispatchers = AppDispatchers()
         )
     }
