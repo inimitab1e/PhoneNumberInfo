@@ -1,5 +1,6 @@
 package com.example.phonenumberinfo.presentation.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,17 +17,17 @@ class MainActivityViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var _numberInfoResponse = MutableLiveData<ResponseToShow?>()
-    val numberInfoResponse get() = _numberInfoResponse
+    val numberInfoResponse: LiveData<ResponseToShow?> get() = _numberInfoResponse
 
     private var _errorResponse = MutableLiveData<String>()
-    val errorResponse get() = _errorResponse
+    val errorResponse: LiveData<String> get() = _errorResponse
 
     fun getNumberInfo(number: String) {
         viewModelScope.launch {
             val response = repo.getInfo(number)
             when(response) {
-                is Result.Success -> numberInfoResponse.postValue(response.value)
-                is Result.Failure<*> -> errorResponse.postValue(response.error.toString())
+                is Result.Success -> _numberInfoResponse.postValue(response.value)
+                is Result.Failure<*> -> _errorResponse.postValue(response.error?.message)
             }
         }
     }
