@@ -17,10 +17,13 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideGetInfoRepository(apiService: ApiService): GetInfoRepository {
+    fun provideGetInfoRepository(
+        apiService: ApiService,
+        appDispatchers: AppDispatchers
+    ): GetInfoRepository {
         return GetInfoRepositoryImpl(
             apiService = apiService,
-            dispatchers = AppDispatchers()
+            dispatchers = appDispatchers
         )
     }
 }
