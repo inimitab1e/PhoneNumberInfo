@@ -1,17 +1,16 @@
 package com.example.phonenumberinfo.presentation.di
 
-import com.example.phonenumberinfo.data.utils.AppDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 @Module
 @InstallIn(SingletonComponent::class)
-private object AppModule {
+object DispatcherModule {
 
     @Provides
-    @Singleton
-    fun provideDispatchers() : AppDispatchers = AppDispatchers()
+    fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 }

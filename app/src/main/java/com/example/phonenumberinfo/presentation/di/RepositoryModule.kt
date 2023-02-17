@@ -2,13 +2,12 @@ package com.example.phonenumberinfo.presentation.di
 
 import com.example.phonenumberinfo.data.network.ApiService
 import com.example.phonenumberinfo.data.repository.GetInfoRepositoryImpl
-import com.example.phonenumberinfo.data.utils.AppDispatchers
 import com.example.phonenumberinfo.domain.repository.GetInfoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 @Module
@@ -19,11 +18,11 @@ object RepositoryModule {
     @Singleton
     fun provideGetInfoRepository(
         apiService: ApiService,
-        appDispatchers: AppDispatchers
+        coroutineDispatcher: CoroutineDispatcher
     ): GetInfoRepository {
         return GetInfoRepositoryImpl(
             apiService = apiService,
-            dispatchers = appDispatchers
+            ioDispatcher = coroutineDispatcher
         )
     }
 }
