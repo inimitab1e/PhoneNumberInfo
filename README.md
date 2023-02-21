@@ -1,5 +1,4 @@
 # PhoneNumberInfo
-# WeatherMVVM
 ### Project Description
 This is a phone number validator Android Application with MVVM pattern.
 
